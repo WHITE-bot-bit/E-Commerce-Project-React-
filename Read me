@@ -1,0 +1,4 @@
+cd -LiteralPath "C:\Users\HP\OneDrive\Desktop\E-Commerce Project[React]" 
+//this one to navigate to the project directory in PowerShell.
+cd ".\E-Commerce Project"
+//this one to go into project folder in PowerShell.
