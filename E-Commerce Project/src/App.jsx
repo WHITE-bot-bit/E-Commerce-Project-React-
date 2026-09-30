@@ -11,7 +11,7 @@ function App() {
   const [cart, setCart] = useState([]);
   
   useEffect(() =>{
-     axios.get('/api/cart-items').then((response) =>{
+     axios.get('/api/cart-items?expand=product').then((response) =>{
       console.log("CART DATA:", response.data);
     setCart(response.data);
   });
