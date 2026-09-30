@@ -7,6 +7,7 @@ import "./CheckoutPage.css";
 
 export function ChechoutPage({ cart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
+  const [paymentSummary, setpaymentSummary] = useState(null);
 
   useEffect(() => {
     axios
@@ -16,6 +17,8 @@ export function ChechoutPage({ cart }) {
 
         setDeliveryOptions(response.data);
       });
+
+      axios
   }, []);
 
   return (
@@ -122,9 +125,9 @@ export function ChechoutPage({ cart }) {
                               />
                               <div>
                                 <div className="delivery-option-date">
-                                  {dayjs(
-                                    deliveryOption.estimatedDeliveryTimeMs,
-                                  ).format("dddd, MMMM D")}
+                                  {dayjs()
+                                   .add(deliveryOption.deliveryDays, 'days')
+                                  .format('dddd, MMMM D')}
                                 </div>
                                 <div className="delivery-option-price">
                                   {priceString}
