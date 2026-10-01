@@ -2,8 +2,7 @@ import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money";
 import { DeliveryOption } from "./deliveryoption";
 
-
-export function OrderSummary({cart,deliveryOptions}) {
+export function OrderSummary({ cart, deliveryOptions, loadCart }) {
   return (
     <div className="order-summary">
       {deliveryOptions.length > 0 &&
@@ -13,13 +12,14 @@ export function OrderSummary({cart,deliveryOptions}) {
               return deliveryOption.id === cartItem.deliveryOptionId;
             },
           );
+
           return (
             <div key={cartItem.productId} className="cart-item-container">
               <div className="delivery-date">
                 Delivery date:{" "}
-                {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format(
-                  "dddd,MMMM D",
-                )}
+                {dayjs()
+                  .add(selectedDeliveryOption.deliveryDays, "days")
+                  .format("dddd, MMMM D")}
               </div>
 
               <div className="cart-item-details-grid">
@@ -46,7 +46,11 @@ export function OrderSummary({cart,deliveryOptions}) {
                   </div>
                 </div>
 
-                <DeliveryOption cartItem={cartItem} deliveryOptions={deliveryOptions}/>
+                <DeliveryOption
+                  cartItem={cartItem}
+                  deliveryOptions={deliveryOptions}
+                  loadCart={loadCart}
+                />
               </div>
             </div>
           );
