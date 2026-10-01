@@ -34,7 +34,7 @@ export function OrdersPage({ cart }) {
                     </div>
                     <div className="order-total">
                       <div className="order-header-label">Total:</div>
-                      <div>{formatMoney.totalCostCents}</div>
+                      <div>{formatMoney(order.totalCostCents)}</div>
                     </div>
                   </div>
 
