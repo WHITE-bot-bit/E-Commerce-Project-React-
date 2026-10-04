@@ -4,12 +4,14 @@ import { Header } from "../../Components/Header";
 import { ProductsGrid } from "./ProductGrid";
 import "./HomePage.css";
 
-export function HomePage({ cart,loadCart }) {
+export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const getHomeData = async () => {
-      const response = await axios.get("/api/products");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/products`,
+      );
       setProducts(response.data);
     };
 
