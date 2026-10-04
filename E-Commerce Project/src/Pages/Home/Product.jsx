@@ -6,7 +6,7 @@ export function Product({ product, loadCart }) {
   const [quantity, setquantity] = useState(1);
 
   const addToCart = async () => {
-    await axios.post("/api/cart-items", {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/cart-items`, {
       productId: product.id,
       quantity,
     });
@@ -19,12 +19,13 @@ export function Product({ product, loadCart }) {
   };
 
   return (
-    <div className="product-container"
-    data-testid="product-container">
+    <div className="product-container" data-testid="product-container">
       <div className="product-image-container">
-        <img className="product-image"
-        data-testid="product-image"
-        src={product.image} />
+        <img
+          className="product-image"
+          data-testid="product-image"
+          src={product.image}
+        />
       </div>
 
       <div className="product-name limit-text-to-2-lines">{product.name}</div>
@@ -35,8 +36,9 @@ export function Product({ product, loadCart }) {
           data-testid="product-rating-stars"
           src={`images/ratings/rating-${product.rating.stars * 10}.png`}
         />
-        <div className="product-rating-count link-primary"
-        data-testid="product-rating-count"
+        <div
+          className="product-rating-count link-primary"
+          data-testid="product-rating-count"
         >
           {product.rating.count}
         </div>
@@ -66,9 +68,11 @@ export function Product({ product, loadCart }) {
         Added
       </div>
 
-      <button className="add-to-cart-button button-primary"
-      data-testid="add-to-cart-button"
-      onClick={addToCart}>
+      <button
+        className="add-to-cart-button button-primary"
+        data-testid="add-to-cart-button"
+        onClick={addToCart}
+      >
         Add to Cart
       </button>
     </div>
